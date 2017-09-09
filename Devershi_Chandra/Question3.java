@@ -79,7 +79,6 @@ public class Question3
             C = sc.nextInt();
             S = sc.next();
             output = new Question3().ancientAlgorithm(L, A, B, C, S);
-            System.out.println("In main function, after algo");
             for(int j=0; j< output.size(); j++)
                 System.out.print(output.get(j)+ " ");
             System.out.println();
