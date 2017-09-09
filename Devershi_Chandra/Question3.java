@@ -1,4 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package c;
 
+/**
+ *
+ * @author Devershi Chandra <devershichandra27@gmail.com>
+ */
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -8,23 +18,35 @@ import java.util.Collections;
  */
 public class Question3 
 {
-    public static ArrayList<Integer> ancientAlgorithm(ArrayList<Integer> L, int A, int B, int C, String S)
+    public ArrayList<Integer> ancientAlgorithm(ArrayList<Integer> L, int A, int B, int C, String S)
     {
         int N = L.size();
         for(int i = 0; i< N; i++)
         {
             switch (S.charAt(i)) {
                 case 'R':
-                    Collections.reverse(L);
+                {
+                    ArrayList<Integer> clone = new ArrayList<Integer>(N);
+                    clone.addAll(L);
+                    int counter=N-1;
+                    for(int k=i;k<N; k++)
+                    {
+                        L.set(k, (int)clone.get(counter));
+                        counter--;
+                    }
                     break;
+                }
                 case 'A':
-                    for(int j = 0; j<N; j++)
+                {
+                    for(int j = i; j<N; j++)
                     {
                         int temp = L.get(j);
                         L.set(j, temp+A);
-                    }   break;
+                    }
+                    break;
+                }
                 case 'M':
-                    for(int j = 0; j<N; j++)
+                    for(int j = i; j<N; j++)
                     {
                         int temp = L.get(j);
                         L.set(j, temp*B);
@@ -51,7 +73,7 @@ public class Question3
         int i = 0;
         while(i< testCases)
         {
-            N = Integer.parseInt(sc.next());
+            N = sc.nextInt();
             L = new ArrayList <Integer>(N);
             int k=0;
             while(k<N)
@@ -63,7 +85,8 @@ public class Question3
             B = sc.nextInt();
             C = sc.nextInt();
             S = sc.next();
-            output = Question3.ancientAlgorithm(L, A, B, C, S);
+            output = new Question3().ancientAlgorithm(L, A, B, C, S);
+            System.out.println("In main function, after algo");
             for(int j=0; j< output.size(); j++)
                 System.out.print(output.get(j)+ " ");
             System.out.println();
